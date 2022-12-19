@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { Replace } from './../../helpers/Replace';
 import { Content } from './content';
 export interface NotificationProps {
@@ -8,14 +9,19 @@ export interface NotificationProps {
     createdAt: Date;
 }
 export class Notification {
+    private _id: string; // utilizando o _ para que no get eu posso utilizar apenas id
     private props: NotificationProps;
 
     constructor(props: Replace<NotificationProps, { createdAt?: Date }>) {
         // O createdAt deixa de ser obrigatório e passa ser opcional, porém utilizando replace conseguimos sempre a data e hora atual
+        this._id = randomUUID();
         this.props = {
             ...props,
             createdAt: props.createdAt ?? new Date(),
         }
+    }
+    public get id() {
+        return this._id;
     }
     //Geters e setters RecipientId
     public set recipientId(recipientId: string) {
