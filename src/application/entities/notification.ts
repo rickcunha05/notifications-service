@@ -6,7 +6,9 @@ export interface NotificationProps {
     content: Content;
     category: string;
     readAt?: Date | null;
+    canceledAt?: Date | null;
     createdAt: Date;
+
 }
 export class Notification {
     private _id: string; // utilizando o _ para que no get eu posso utilizar apenas id
@@ -51,6 +53,14 @@ export class Notification {
     }
     public get readAt(): Date | null | undefined {
         return this.props.readAt;
+    }
+    //Get canceledAt não necessita de um set pois não tem necessita de alteração na criação da data
+    public cancel() {
+        return this.props.canceledAt = new Date();
+    }
+
+    public get canceledAt(): Date | null | undefined {
+        return this.props.canceledAt;
     }
     //Get createAt não necessita de um set pois não tem necessita de alteração na criação da data
     public get createdAt(): Date {
