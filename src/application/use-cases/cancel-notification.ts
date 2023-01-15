@@ -5,6 +5,7 @@ import { NotificationsRepository } from '../repositories/notifications-repositor
 interface CancelNotificationRequest {
     notificationId: string;
 }
+
 type CancelNotificationResponse = void;
 
 @Injectable()
@@ -20,7 +21,6 @@ export class CancelNotification {
             throw new NotificationNotFound()
         }
         notification.cancel()
-
 
         await this.notificationsRepository.save(notification)
     }

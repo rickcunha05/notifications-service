@@ -8,6 +8,9 @@ export class PrismaNotificationMapper {
             content: notification.content.value,
             category: notification.category,
             recipientId: notification.recipientId,
+            readAt: notification.readAt,
+            canceledAt: notification.canceledAt,
+            createdAt: notification.createdAt,
         }
     }
     static toDomain(raw: RawNotification): Notification {
@@ -18,6 +21,8 @@ export class PrismaNotificationMapper {
             readAt: raw.readAt,
             canceledAt: raw.canceledAt,
             createdAt: raw.createdAt,
-        }, raw.id)
+        },
+            raw.id,
+        )
     }
 }

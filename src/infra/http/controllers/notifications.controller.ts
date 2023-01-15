@@ -19,10 +19,13 @@ export class NotificationsController {
     private getRecipientNotifications: GetRecipientNotifications,
   ) { }
   @Patch(':id/cancel')
-  async cancel(
-    @Param('id') id: string,) { await this.cancelNotification.execute({ notificationId: id }) }
+  async cancel(@Param('id') id: string) {
+    await this.cancelNotification.execute({
+      notificationId: id,
+    });
+  }
 
-  @Get('count/from/recipientId')
+  @Get('count/from/:recipientId')
   async countFromRecipient(@Param('recipientId') recipientId: string): Promise<{ count: number }> {
     const { count } = await this.countRecipientNotifications.execute({
       recipientId
@@ -32,7 +35,7 @@ export class NotificationsController {
     }
   }
 
-  @Get('count/recipientId')
+  @Get('from/:recipientId')
   async getFromRecipient(@Param('recipientId') recipientId: string) {
     const { notifications } = await this.getRecipientNotifications.execute({
       recipientId

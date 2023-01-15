@@ -61,7 +61,7 @@ export class Notification {
     }
     //Get canceledAt não necessita de um set pois não tem necessita de alteração na criação da data
     public cancel() {
-        return this.props.canceledAt = new Date();
+        this.props.canceledAt = new Date();
     }
 
     public get canceledAt(): Date | null | undefined {
