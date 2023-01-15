@@ -14,8 +14,9 @@ export class Notification {
     private _id: string; // utilizando o _ para que no get eu posso utilizar apenas id
     private props: NotificationProps;
 
-    constructor(props: Replace<NotificationProps, { createdAt?: Date }>) {
+    constructor(props: Replace<NotificationProps, { createdAt?: Date }>, id?: string) {
         // O createdAt deixa de ser obrigatório e passa ser opcional, porém utilizando replace conseguimos sempre a data e hora atual
+        this._id = id ?? randomUUID();
         this._id = randomUUID();
         this.props = {
             ...props,
